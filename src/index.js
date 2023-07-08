@@ -1,9 +1,9 @@
-import express from 'express';
-import { cacheMiddleware } from './middlewares/cache';
-import { getBrowserInstance } from './libs/chromium';
-import { validateURLMiddleware } from './middlewares/validateURL';
+const express = require('express');
+const { cacheMiddleware } = require('./middlewares/cache');
+const { getBrowserInstance } = require('./libs/chromium');
+const { validateURLMiddleware } = require('./middlewares/validateURL');
 
-const { CONTAINER_ID } = process.env;
+const { CONTAINER_ID, PORT } = process.env;
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(cacheMiddleware);
 app.use(validateURLMiddleware);
 
 app.get('/api/image-generator', async (req, res) => {
-  const url = req.query.url as string;
+  const url = req.query.url;
 
   try {
     const browser = await getBrowserInstance();
@@ -54,4 +54,4 @@ app.get('/api/image-generator', async (req, res) => {
   }
 });
 
-export { app };
+module.exports = app;
