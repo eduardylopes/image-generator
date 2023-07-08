@@ -3,7 +3,7 @@ const { cacheMiddleware } = require('./middlewares/cache');
 const { getBrowserInstance } = require('./libs/chromium');
 const { validateURLMiddleware } = require('./middlewares/validateURL');
 
-const { CONTAINER_ID, PORT } = process.env;
+const { CONTAINER_ID } = process.env;
 
 const app = express();
 
@@ -22,7 +22,9 @@ app.get('/api/image-generator', async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle0' });
 
-    if (!CONTAINER_ID) {
+    const selector = await page.waitForSelector(`#${CONTAINER_ID}`);
+
+    if (!selector) {
       const imageBuffer = await page.screenshot({
         fullPage: true,
         encoding: 'binary',

@@ -6,7 +6,7 @@ const validateURLMiddleware = (req, res, next) => {
   const imageGeneratorSchema = z.object({
     url: z
       .string()
-      .url()
+      .url('Invalid URL')
       .refine(
         value => {
           const url = new URL(value);
