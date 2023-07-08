@@ -20,6 +20,7 @@ const getBrowserInstance = async () => {
     args: isProduction ? chromium.args : undefined,
     executablePath: isProduction ? await chromium.executablePath : exePath,
     headless: isProduction ? chromium.headless : true,
+    ignoreDefaultArgs: ['--disable-extensions'],
   };
 
   return chromium.puppeteer.launch(puppeteerConfig);
