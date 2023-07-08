@@ -1,10 +1,9 @@
 import express from 'express';
 import { cacheMiddleware } from './middlewares/cache';
 import { getBrowserInstance } from './libs/chromium';
-import { z } from 'zod';
 import { validateURLMiddleware } from './middlewares/validateURL';
 
-const { CONTAINER_ID, DOMAIN_NAME } = process.env;
+const { CONTAINER_ID } = process.env;
 
 const app = express();
 
@@ -56,7 +55,3 @@ app.get('/api/image-generator', async (req, res) => {
 });
 
 export { app };
-
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
