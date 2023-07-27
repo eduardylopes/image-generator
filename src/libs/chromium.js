@@ -13,14 +13,18 @@ const getBrowserInstance = async () => {
 
   const puppeteerConfig = {
     defaultViewport: {
-      width: 1280,
-      height: 720,
+      width: 1080,
+      height: 768,
     },
     ignoreHTTPSErrors: true,
     args: isProduction ? chromium.args : undefined,
     executablePath: isProduction ? await chromium.executablePath : exePath,
     headless: isProduction ? chromium.headless : true,
-    ignoreDefaultArgs: ['--disable-extensions'],
+    ignoreDefaultArgs: [
+      '--disable-extensions',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+    ],
   };
 
   return chromium.puppeteer.launch(puppeteerConfig);
