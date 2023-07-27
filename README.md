@@ -12,7 +12,7 @@ Before running the project, ensure you have the following prerequisites installe
 
    - `CONTAINER_ID`: This variable holds the element ID that will be targeted for capturing a screenshot. If this variable is omitted, the entire web page will be captured.
 
-   - `NODE_ENV`: This variable is used to specify the execution environment. When running the project locally, set `NODE_ENV` to "loca". For production deployment, set it to "production".
+   - `NODE_ENV`: This variable is used to specify the execution environment. When running the project locally, set `NODE_ENV` to "local". For production deployment, set it to "production".
 
 ## Installation and Setup
 
