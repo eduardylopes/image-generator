@@ -23,6 +23,7 @@ const getBrowserInstance = async () => {
     ignoreDefaultArgs: [
       '--disable-extensions',
       '--no-sandbox',
+      '--no--zygote',
       '--disable-setuid-sandbox',
     ],
   };
