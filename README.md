@@ -58,5 +58,5 @@ Follow these steps to get the project up and running:
 To take a screenshot of a webpage, make a GET request to the following url:
 
 ```bash
-https://your-api-hostname.com/api/screenshot?url=https://example.com
+https://your-api-hostname.com/api/image-generator?url=https://example.com
 ```
