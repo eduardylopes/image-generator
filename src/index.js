@@ -3,7 +3,7 @@ const { cacheMiddleware } = require('./middlewares/cache');
 const { getBrowserInstance } = require('./libs/chromium');
 const { validateURLMiddleware } = require('./middlewares/validateURL');
 
-const { CONTAINER_ID } = process.env;
+const { CONTAINER_ID, NODE_ENV } = process.env;
 
 const app = express();
 
@@ -55,5 +55,9 @@ app.get('/api/image-generator', async (req, res) => {
     res.status(500).end('Internal Server Error');
   }
 });
+
+if (NODE_ENV === 'local') {
+  app.listen(3000);
+}
 
 module.exports = app;
