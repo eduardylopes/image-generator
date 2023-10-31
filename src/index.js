@@ -2,11 +2,17 @@ const express = require('express');
 const { cacheMiddleware } = require('./middlewares/cache');
 const { getBrowserInstance } = require('./libs/chromium');
 const { validateURLMiddleware } = require('./middlewares/validateURL');
+const cors = require('cors');
 
 const { CONTAINER_ID, NODE_ENV } = process.env;
 
 const app = express();
 
+const corsOptions = {
+  origin: NODE_ENV === 'local' ? '*' : 'https://genial4.com',
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(cacheMiddleware);
@@ -56,8 +62,10 @@ app.get('/api/image-generator', async (req, res) => {
   }
 });
 
+const PORT = process.env.PORT || 3000;
+
 if (NODE_ENV === 'local') {
-  app.listen(3000);
+  app.listen(PORT, console.log(`Running on http://localhost:${PORT}`));
 }
 
 module.exports = app;
